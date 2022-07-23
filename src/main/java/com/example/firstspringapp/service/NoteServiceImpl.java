@@ -40,4 +40,14 @@ public class NoteServiceImpl implements NoteService {
         return test.parallelStream().map(dao -> new NoteDto(dao))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public NoteDto getCurrentNote(Long id, Long noteId) {
+        var test = Optional.ofNullable(noteRepository.getCurrentNote(noteId))
+                .orElseThrow(() -> new RuntimeException("Sorry, note with index: " + id + " not found!"));
+
+        return NoteDto.builder()
+                .title(test.getTitle())
+                .body(test.getBody()).build();
+    }
 }

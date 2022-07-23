@@ -20,7 +20,12 @@ public class NoteController {
         return noteService.addNewNote(id, note);
     }
 
-    @GetMapping("/{id}/notes")
+    @GetMapping("/{id}/note")
+    public NoteDto getCurrentNote(@PathVariable Long id, @RequestParam Long noteId) {
+        return noteService.getCurrentNote(id, noteId);
+    }
+
+    @GetMapping("/{id}/all")
     public List<NoteDto> showCustomerNotes(@PathVariable Long id) {
         return noteService.showAllCustomerNotes(id);
     }

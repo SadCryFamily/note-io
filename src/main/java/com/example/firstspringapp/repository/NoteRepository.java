@@ -12,5 +12,8 @@ import java.util.List;
 public interface NoteRepository extends JpaRepository<NoteDao, Long> {
 
     @Query(value = "SELECT * FROM note WHERE customer_id in (:id);", nativeQuery = true)
-    public List<NoteDao> getCustomerNotes(@Param("id") Long id);
+    List<NoteDao> getCustomerNotes(@Param("id") Long id);
+
+    @Query(value = "SELECT *  FROM note AS n WHERE n.customer_id in (7) ORDER by n.id OFFSET :id ROWS FETCH FIRST ROW ONLY;", nativeQuery = true)
+    NoteDao getCurrentNote(@Param("id") Long id);
 }

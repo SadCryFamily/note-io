@@ -11,4 +11,6 @@ public interface NoteService {
 
     List<NoteDto> showAllCustomerNotes(Long id);
 
+    NoteDto getCurrentNote(Long id, Long noteId);
+
 }
