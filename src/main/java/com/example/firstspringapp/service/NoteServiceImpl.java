@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class NoteServiceImpl implements NoteService {
@@ -29,4 +32,12 @@ public class NoteServiceImpl implements NoteService {
         return new NoteDto(newNote);
     }
 
+    @Override
+    public List<NoteDto> showAllCustomerNotes(Long id) {
+        var test = Optional.ofNullable(noteRepository.getCustomerNotes(id))
+                .orElseThrow(() -> new RuntimeException("Ops! You dont have any notes."));
+
+        return test.parallelStream().map(dao -> new NoteDto(dao))
+                .collect(Collectors.toList());
+    }
 }

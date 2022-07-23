@@ -19,4 +19,9 @@ public class NoteController {
     public NoteDto addNewNote(@PathVariable Long id, @RequestBody NoteDao note) {
         return noteService.addNewNote(id, note);
     }
+
+    @GetMapping("/{id}/notes")
+    public List<NoteDto> showCustomerNotes(@PathVariable Long id) {
+        return noteService.showAllCustomerNotes(id);
+    }
 }
