@@ -11,6 +11,7 @@ import lombok.*;
 public class CustomerDto {
 
     private Long id;
+
     private String fullName;
 
 }
