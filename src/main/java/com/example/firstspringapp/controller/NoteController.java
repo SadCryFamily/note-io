@@ -34,4 +34,5 @@ public class NoteController {
     public List<NoteDto> showCustomerNotes(@PathVariable Long id) {
         return noteService.showAllCustomerNotes(id);
     }
+
 }

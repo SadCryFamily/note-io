@@ -91,7 +91,7 @@ public class CustomerServiceImplTest {
 
         Mockito.when(customerRepository.findAll()).thenReturn(customersList);
 
-        List<CustomerDao> result = customerService.getAllUsers();
+        List<CustomerDto> result = customerService.getAllUsers();
 
         Assert.assertEquals(result.get(0), customersList.get(0));
         Assert.assertEquals(result.get(1), customersList.get(1));

@@ -16,6 +16,6 @@ public interface CustomerService {
 
     CustomerDto updateUser(Long id, String newName);
 
-    List<CustomerDao> getAllUsers();
+    List<CustomerDto> getAllUsers();
 
 }

@@ -30,7 +30,7 @@ public class CustomerController {
     }
 
     @GetMapping("/statistics")
-    public List<CustomerDao> getAllUsers() {
+    public List<CustomerDto> getAllUsers() {
         return customerService.getAllUsers();
     }
 

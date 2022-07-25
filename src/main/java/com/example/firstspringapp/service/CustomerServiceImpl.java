@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -48,7 +49,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerDao> getAllUsers() {
-        return new ArrayList<>(customerRepository.findAll());
+    public List<CustomerDto> getAllUsers() {
+
+        return customerRepository.findAll().parallelStream()
+                .map(dao -> CustomerDto.builder().id(dao.getId()).fullName(dao.getFullName()).build())
+                .collect(Collectors.toList());
     }
 }
