@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto updateUser(Long id, String newName) {
         if (customerRepository.existsById(id)) {
-            CustomerDao currentCustomer = customerRepository.getReferenceById(id);
+            CustomerDao currentCustomer = customerRepository.getById(id);
             currentCustomer.setFullName(newName);
             customerRepository.save(currentCustomer);
 

@@ -68,7 +68,7 @@ public class CustomerServiceImplTest {
         var updatedCustomerDto = CustomerDto.builder().id(4L).fullName("Set").build();
 
         Mockito.when(customerRepository.existsById(4L)).thenReturn(true);
-        Mockito.when(customerRepository.getReferenceById(4L)).thenReturn(updatableCustomer);
+        Mockito.when(customerRepository.getById(4L)).thenReturn(updatableCustomer);
 
         var result = customerService.updateUser(4L, "Set");
 
