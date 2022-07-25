@@ -43,11 +43,15 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public NoteDto getCurrentNote(Long id, Long noteId) {
-        var test = Optional.ofNullable(noteRepository.getCurrentNote(noteId))
-                .orElseThrow(() -> new RuntimeException("Sorry, note with index: " + id + " not found!"));
+        var customerIsExist = Optional.ofNullable(customerRepository.findById(id))
+                .orElseThrow(() -> new RuntimeException("Customer with ID: " + id + " not created!"));
+
+        var currentNote = noteRepository.findById(noteId)
+                .orElseThrow(() -> new RuntimeException("Note with ID: " + noteId + " not created!"));
 
         return NoteDto.builder()
-                .title(test.getTitle())
-                .body(test.getBody()).build();
+                .title(currentNote.getTitle())
+                .body(currentNote.getBody())
+                .build();
     }
 }
