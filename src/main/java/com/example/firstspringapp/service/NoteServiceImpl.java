@@ -54,4 +54,22 @@ public class NoteServiceImpl implements NoteService {
                 .body(currentNote.getBody())
                 .build();
     }
+
+    @Override
+    public NoteDto updateCurrentNote(Long id, Long noteId, NoteDto noteDto) {
+        var customerIsExist = Optional.ofNullable(customerRepository.findById(id))
+                .orElseThrow(() -> new RuntimeException("Customer with ID: " + id + " not created!"));
+
+        var updatableNote = noteRepository.getById(noteId);
+
+        updatableNote.setTitle(noteDto.getTitle());
+        updatableNote.setBody(noteDto.getBody());
+
+        noteRepository.save(updatableNote);
+
+        return NoteDto.builder()
+                .title(noteDto.getTitle())
+                .body(noteDto.getBody())
+                .build();
+    }
 }

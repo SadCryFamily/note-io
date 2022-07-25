@@ -13,4 +13,6 @@ public interface NoteService {
 
     NoteDto getCurrentNote(Long id, Long noteId);
 
+    NoteDto updateCurrentNote(Long id, Long noteId, NoteDto noteDto);
+
 }

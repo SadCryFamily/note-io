@@ -1,6 +1,8 @@
 package com.example.firstspringapp.dao;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
