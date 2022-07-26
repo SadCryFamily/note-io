@@ -1,14 +1,14 @@
 package com.example.firstspringapp.dao;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "note")
 public class NoteDao {
