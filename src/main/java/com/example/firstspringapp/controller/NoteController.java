@@ -1,8 +1,11 @@
 package com.example.firstspringapp.controller;
 
 import com.example.firstspringapp.dao.NoteDao;
+import com.example.firstspringapp.dao.SupportDao;
 import com.example.firstspringapp.dto.NoteDto;
+import com.example.firstspringapp.dto.SupportDto;
 import com.example.firstspringapp.service.NoteService;
+import com.example.firstspringapp.service.SupportService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +21,19 @@ public class NoteController {
     @Autowired
     private NoteService noteService;
 
+    @Autowired
+    private SupportService supportService;
+
     @ApiOperation("Creating new note for customer")
     @PostMapping("/{id}/create")
     public NoteDto addNewNote(@PathVariable Long id, @RequestBody NoteDao note) {
         return noteService.addNewNote(id, note);
+    }
+
+    @ApiOperation("Creating support order")
+    @PostMapping("/profile/{id}/support")
+    public SupportDto postNewOrder(@PathVariable Long id, @RequestBody SupportDao supportDao) {
+        return supportService.postNewOrder(id, supportDao);
     }
 
     @ApiOperation("Deleting note by id")
