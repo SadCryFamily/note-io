@@ -27,8 +27,6 @@ public class SupportServiceImpl implements SupportService {
     public SupportDto postNewOrder(Long id, SupportDao supportDao) {
         var customer = customerRepository.getById(id);
 
-        Optional.of(customer).orElseThrow(RuntimeException::new);
-
         customer.createOrder(supportDao);
 
         return SupportDto.builder()

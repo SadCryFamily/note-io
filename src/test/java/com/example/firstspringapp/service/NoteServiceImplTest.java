@@ -8,6 +8,8 @@ import com.example.firstspringapp.repository.NoteRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,6 +33,36 @@ public class NoteServiceImplTest {
 
     @Autowired
     private NoteService noteService;
+
+    @Mock
+    private List<NoteDao> list;
+
+    @InjectMocks
+    private CustomerDao customerDao;
+
+    @Test
+    public void createNoteTest() {
+
+        customerDao.setId(1L);
+        customerDao.setFullName("create");
+
+        Mockito.when(customerRepository.findById(customerDao.getId()))
+                .thenReturn(Optional.of(customerDao));
+
+        var newNoteDao = NoteDao.builder()
+                .Id(1L)
+                .title("title")
+                .body("body")
+                .build();
+
+        var expectedNoteDto = NoteDto.builder().title("title").body("body").build();
+
+        var result = noteService.addNewNote(customerDao.getId(), newNoteDao);
+
+        Assert.assertEquals(result.getTitle(), expectedNoteDto.getTitle());
+        Assert.assertEquals(result.getBody(), expectedNoteDto.getBody());
+
+    }
 
     @Test
     public void showAllCustomerNotesTest() {

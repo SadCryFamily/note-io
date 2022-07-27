@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -93,7 +94,13 @@ public class CustomerServiceImplTest {
 
         List<CustomerDto> result = customerService.getAllUsers();
 
-        Assert.assertEquals(result.get(0), customersList.get(0));
-        Assert.assertEquals(result.get(1), customersList.get(1));
+        var daoToDtoList = customersList.stream()
+                        .map(dao -> CustomerDto.builder()
+                                .id(dao.getId())
+                                .fullName(dao.getFullName()).build())
+                                .collect(Collectors.toList());
+
+        Assert.assertEquals(result.get(0).getId(), daoToDtoList.get(0).getId());
+        Assert.assertEquals(result.get(1).getFullName(), daoToDtoList.get(1).getFullName());
     }
 }
