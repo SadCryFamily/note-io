@@ -36,7 +36,7 @@ public class NoteController {
         return supportService.postNewOrder(id, supportDao);
     }
 
-    @ApiOperation("Deleting note by id")
+    @ApiOperation("Getting note by id")
     @GetMapping("/{id}/note")
     public NoteDto getCurrentNote(@PathVariable Long id, @RequestParam Long noteId) {
         return noteService.getCurrentNote(id, noteId);
