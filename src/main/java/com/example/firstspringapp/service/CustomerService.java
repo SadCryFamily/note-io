@@ -2,7 +2,6 @@ package com.example.firstspringapp.service;
 
 import com.example.firstspringapp.dao.CustomerDao;
 import com.example.firstspringapp.dto.CustomerDto;
-import com.example.firstspringapp.dto.NoteDto;
 
 import java.util.List;
 
